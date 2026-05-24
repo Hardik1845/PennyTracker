@@ -4,6 +4,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import PennyIndex from "./pages/Home";
 import AnalyticsPage from "./pages/Analytics";
 import TransactionsPage from "./pages/Transactions";
+import Budgets from "./pages/Budgets";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
   {
 path:"/transactions",
 element:<TransactionsPage/>
+  },
+  {
+    path:"/budget",
+    element:<Budgets/>
   }
 
 ])

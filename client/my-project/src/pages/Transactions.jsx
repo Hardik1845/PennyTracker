@@ -47,6 +47,8 @@ const styles = `
 `;
 
 // ================= COMPONENT =================
+
+
 const TransactionsPage = () => {
   const [transactions, setTransactions] = useState([]);
   function decideType(category){
@@ -81,6 +83,30 @@ const TransactionsPage = () => {
     fetchData();
   }, []);
 
+  const   cdate = new Date();
+  
+  let cmonth = cdate.getMonth()+1;
+  if(cmonth <10){
+ cmonth = "0"+  `${cmonth}`
+  }
+   
+  
+  const cyear = cdate.getFullYear();
+  const [transactionName,setName]  = useState("");
+  const[transactionAmount,setAmount] = useState("");
+  const [transactionDate,setDate] = useState(`${cyear}-${cmonth}-${cdate.getDate()}`);
+
+   function submitTransaction(event){
+    event.preventDefault();
+     const transaction = {
+      description:transactionName,
+      amount:transactionAmount,
+      date: transactionDate
+     }
+     console.log(transaction);
+    
+  }
+
   return (
     <div className="pn-page">
       <style>{styles}</style>
@@ -96,15 +122,15 @@ const TransactionsPage = () => {
           <h3 className="pn-panel-title">Add Transaction</h3>
 
           <form className="pn-form">
-            <input className="pn-input" placeholder="Name" />
-            <input className="pn-input" type="number" placeholder="Amount" />
-            <input className="pn-input" type="date" />
+            <input className="pn-input" placeholder="e.g Groceries"  onChange = {(event)=>{setName(event.target.value)}} value={transactionName} required />
+            <input className="pn-input" type="number" placeholder="Amount"  onChange = {(event)=>{setAmount(event.target.value)}} value={transactionAmount} required />
+            <input className="pn-input" type="date" onChange = {(event)=>{setDate(event.target.value)}} value={transactionDate} required />
 
             <select className="pn-input">
               {CATEGORIES.map(c => <option key={c}>{c}</option>)}
             </select>
 
-            <button className="pn-submit">Add</button>
+            <button className="pn-submit" onSubmit={submitTransaction} >Add</button>
           </form>
         </div>
 

@@ -6,17 +6,12 @@ import {
   XAxis, YAxis, Tooltip, CartesianGrid, Legend,
 } from "recharts";
 
-// ============================================================
-// Penny — Analytics Page (Static UI)
-// Vanilla CSS only. No hooks. No state. No business logic.
-// Charts use static SAMPLE_* data (Recharts required).
-// ============================================================
+
 const BASE_URL = "http://localhost:3000"
 const GREEN = "#1f9d55";
 const RED = "#d23b3b";
 const PIE_COLORS = ["#0a2540", "#1f9d55", "#d23b3b", "#f5a524", "#3b82f6", "#8b5cf6", "#06b6d4"];
 
-// const SAMPLE_STATS = { income: 7200, expense: 2379.45, savings: 4820.55, avgExpense: 132.19 };
 
 const SAMPLE_TREND = [
   { label: "Apr 01", income: 1200, expense: 200 },
@@ -26,14 +21,7 @@ const SAMPLE_TREND = [
   { label: "Apr 28", income: 4200, expense: 320 },
 ];
 
-// const SAMPLE_CATEGORY = [
-//   { name: "Rent",          value: 1200 },
-//   { name: "Groceries",     value: 420 },
-//   { name: "Entertainment", value: 180 },
-//   { name: "Transport",     value: 220 },
-//   { name: "Utilities",     value: 240 },
-//   { name: "Food",          value: 119.45 },
-// ];
+
 
 const SAMPLE_MONTHLY = [
   { label: "Jan 26", income: 6800, expense: 2100 },
@@ -88,7 +76,7 @@ async function getCategoryData(){
   
    const formatted = response.data.categoryData.map(item => ({
       name: item.name,
-      value: Number(item.value) // ✅ FIX HERE
+      value: Number(item.value) 
     }));
 
     setSampleCategory(formatted);
@@ -164,6 +152,7 @@ getCategoryData();
         <div className="pn-panel">
           <h3 className="pn-panel-title">By Category</h3>
           <div style={{ width: "100%", height: 300 }}>
+            {/* Pie chart  */}
             <ResponsiveContainer>
               <PieChart>
                 <Pie data={SAMPLE_CATEGORY} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={60} outerRadius={100} paddingAngle={2}>
@@ -178,7 +167,7 @@ getCategoryData();
           </div>
         </div>
       </section>
-
+          {/* Bar chart showing income to expense */}
       <section className="pn-panel">
         <h3 className="pn-panel-title">Monthly Income vs Expense</h3>
         <div style={{ width: "100%", height: 300 }}>
