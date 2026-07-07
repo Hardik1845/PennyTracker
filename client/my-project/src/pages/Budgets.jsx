@@ -205,13 +205,15 @@ const Budgets = () => {
       if(yearFilter != b.year_val) return false;
       return true;
     });
-  }, [statusFilter, categoryFilter,monthFilter,yearFilter]);
+  }, [statusFilter, categoryFilter , monthFilter,yearFilter]);
 
   const chartData = BUDGETS.map((b) => ({
     name: b.category,
     Budget: b.budget,
     Actual: b.spent,
   }));
+
+  
 
   return (
     <div>
@@ -223,7 +225,7 @@ const Budgets = () => {
           <p className="bg-sub">Track category-wise spending limits and manage your financial goals.</p>
         </div>
         <button className="bg-cta" onClick={() => setShowModal(true)}>
-          <span style={{ fontSize: 16, lineHeight: 1 }}>+</span> Create Budget
+          <span style={{ fontSize: 24, lineHeight: 1 }}>+</span> Create Budget
         </button>
       </div>
 
@@ -407,9 +409,7 @@ const Budgets = () => {
             <div className="bg-field">
               <label>Category</label>
               <select className="bg-select">
-                {categories.map((c)=>{
-                  <option key={c.id}>{c.category}</option>
-                })}
+              {categories.map((b) => <option key={b.id} value={b.category}>{b.category}</option>)}
                 
                 {/* <option>Food</option><option>Travel</option><option>Entertainment</option>
                 <option>Utilities</option><option>Shopping</option><option>Rent</option> */}
@@ -417,7 +417,7 @@ const Budgets = () => {
             </div>
             <div className="bg-field">
               <label>Monthly Limit</label>
-              <input className="bg-input" type="number" placeholder="₹ 5000" />
+              <input className="bg-input" type="number" placeholder="₹  5000" required  />
             </div>
             <div className="bg-field">
               <label>Period</label>
