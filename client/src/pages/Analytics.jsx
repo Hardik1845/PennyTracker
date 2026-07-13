@@ -72,7 +72,7 @@ getSampleStats();
 
 useEffect(()=>{
 async function getCategoryData(){
-  const response = await axios.get(BASE_URL+"/analytics/stats/category");
+  const response = await axios.get(BASE_URL+"/analytics/category-breakdown");
   
    const formatted = response.data.categoryData.map(item => ({
       name: item.name,
